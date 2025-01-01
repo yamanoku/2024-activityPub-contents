@@ -68,7 +68,7 @@ const contentArray = extractContent(OUTBOX_JSON_DATA);
 
 // HTMLコンテンツを生成する
 const htmlContent = `
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2024 yamanoku's ActivityPub Contents</title><link rel="stylesheet" href="//cdn.skypack.dev/yama-normalize" /></head><body><main><h1>2024 yamanoku's ActivityPub Contents</h1>${contentArray.join("\n")}</main></body></html>`;
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2024 yamanoku's ActivityPub Contents</title><link rel="stylesheet" href="//cdn.skypack.dev/yama-normalize" /></head><body><main><h1>2024 yamanoku's ActivityPub Contents</h1>${contentArray.join("\n")}</main><footer style="text-align: center"><p>© Copyright ${new Date().getFullYear()}, Okuto Oyama</p><p>Source :<a href="https://github.com/yamanoku/2024-activityPub-contents/">yamanoku/2024-activityPub-contents</a></p></footer></body></html>`;
 
 // HTMLファイルに書き出す
 await Bun.write("build/index.html", htmlContent);
