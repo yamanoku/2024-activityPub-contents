@@ -39,7 +39,7 @@ const extractContent = (data: DataType) => {
       if (item.object.attachment.length > 0) {
         item.object.attachment.forEach(
           (attachment) => {
-            content += `<div><img src="${attachment.url}" alt="${attachment.name}"></div>`;
+            content += `<div><img src="/2024-activityPub-contents${attachment.url}" alt="${attachment.name}"></div>`;
           }
         );
       }
