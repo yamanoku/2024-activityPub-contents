@@ -3,9 +3,13 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "gh-pages": "^6.2.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d build -b gh-pages -m 'chore: deploy [skip ci]' -t"
   }
 }

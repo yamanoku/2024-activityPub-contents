@@ -1,3 +1,5 @@
+import { $ } from "bun";
+
 type DataType = {
   orderedItems: {
     object: {
@@ -37,7 +39,7 @@ const extractContent = (data: DataType) => {
       if (item.object.attachment.length > 0) {
         item.object.attachment.forEach(
           (attachment) => {
-            content += `<div><img src="/archive/${attachment.url}" alt="${attachment.name}"></div>`;
+            content += `<div><img src="${attachment.url}" alt="${attachment.name}"></div>`;
           }
         );
       }
@@ -70,3 +72,5 @@ const htmlContent = `
 
 // HTMLファイルに書き出す
 await Bun.write("build/index.html", htmlContent);
+
+await $`cp -r archive/media_attachments build/media_attachments`;
