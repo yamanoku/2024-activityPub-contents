@@ -123,6 +123,7 @@ ${commonHTMLHead}
                   )
                   .join("")}
         </ul>
+        <p><a href="likes.html">ActivityPub Likes List</a></p>
 ${commonHTMLFooter}
 `;
 
