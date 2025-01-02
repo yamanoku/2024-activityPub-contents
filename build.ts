@@ -134,6 +134,4 @@ for (const month in contentArray) {
   );
 }
 
-await $`mkdir build/2024-activityPub-contents`;
-
-await $`cp -r archive/media_attachments build/2024-activityPub-contents/media_attachments`;
+await $`cp -r archive/media_attachments build/media_attachments`;
