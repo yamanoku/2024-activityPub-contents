@@ -123,6 +123,8 @@ ${commonHTMLHead}
 ${commonHTMLFooter}
 `;
 
+await $`rm -rf build`;
+
 await Bun.write("build/index.html", indexHTMLContent);
 
 for (const month in contentArray) {
@@ -132,4 +134,6 @@ for (const month in contentArray) {
   );
 }
 
-await $`cp -r archive/media_attachments build/media_attachments`;
+await $`mkdir build/2024-activityPub-contents`;
+
+await $`cp -r archive/media_attachments build/2024-activityPub-contents/media_attachments`;
