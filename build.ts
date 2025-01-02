@@ -21,8 +21,16 @@ type DataType = {
   }[];
 };
 
+type LikeDataType = {
+  orderedItems: string[];
+};
+
 const OUTBOX_JSON_DATA: DataType = await Bun.file(
   "./archive/outbox.json"
+).json();
+
+const LINKS_JSON_DATA: LikeDataType = await Bun.file(
+  "./archive/likes.json"
 ).json();
 
 const extractContent = (data: DataType) => {
@@ -66,7 +74,16 @@ const extractContent = (data: DataType) => {
   return monthData;
 };
 
+const extractLikesContent = (data: LikeDataType) => {
+  const likesData: string[] = [];
+  data.orderedItems.forEach((item) => {
+    likesData.push(item);
+  });
+  return likesData;
+};
+
 const contentArray = extractContent(OUTBOX_JSON_DATA);
+const likesArray = extractLikesContent(LINKS_JSON_DATA);
 
 const commonHTMLHead = `
 <!DOCTYPE html>
@@ -123,6 +140,24 @@ ${commonHTMLHead}
 ${commonHTMLFooter}
 `;
 
+const likeHTMLContent = (extractLikesContent: string[]) => `
+${commonHTMLHead}
+<title>2024 yamanoku's ActivityPub Likes List</title>
+</head>
+<body>
+    <main>
+        <h1>2024 yamanoku's ActivityPub Likes List</h1>
+        <ul>
+            ${extractLikesContent
+              .map(
+                (link) =>
+                  `<li><a href="${link}" target="_blank">${link}</a></li>`
+              )
+              .join("")}
+        </ul>
+${commonHTMLFooter}
+`;
+
 await $`rm -rf build`;
 
 await Bun.write("build/index.html", indexHTMLContent);
@@ -133,5 +168,7 @@ for (const month in contentArray) {
     monthHTMLContent(month)
   );
 }
+
+await Bun.write("build/likes.html", likeHTMLContent(likesArray));
 
 await $`cp -r archive/media_attachments build/media_attachments`;
