@@ -9,7 +9,7 @@ const commonHTMLHead = `
 
 const commonHTMLFooter = `
     </main>
-    <footer style="text-align: center">
+    <footer>
         <p>© Copyright ${new Date().getFullYear()}, Okuto Oyama</p>
         <p>Source :<a href="https://github.com/yamanoku/2024-activityPub-contents/">yamanoku/2024-activityPub-contents</a></p>
     </footer>
